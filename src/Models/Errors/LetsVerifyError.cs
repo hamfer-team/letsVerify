@@ -1,4 +1,4 @@
-﻿using HamferTeam.Kernel.Models.Errors;
+﻿using HamferTeam.Kernel.Errors;
 
 namespace HamferTeam.LetsVerify.Models.Errors;
 

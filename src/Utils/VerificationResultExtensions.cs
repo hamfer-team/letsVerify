@@ -312,9 +312,14 @@ public static class VerificationResultExtensions
   #endregion
 
   #region Property Assertions for ENUMERABLES only!
-  public static VerificationResult AssertIsMemeberOf<T>(this VerificationResult result, IEnumerable<T> list)
+  public static VerificationResult AssertIsMemeberOf<T>(this VerificationResult result, IEnumerable<T>? list)
   => Handle(result, "عضوی از فهرست بودن", () =>
   {
+    if (list == null)
+    {
+      throw new LetsVerifyError("فهرست مقادیر نباید خالی (تهی) باشد!");
+    }
+
     if (!_isEnumerable)
     {
       if (list.All(w => w != _propertyValue))
