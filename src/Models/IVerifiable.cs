@@ -6,5 +6,5 @@ public interface IVerifiable<TModel>
   where TModel : class
 {
   void Verify();
-  bool TryVerify(out KernelError? exception);
+  bool TryVerify(out KernelError? error);
 }

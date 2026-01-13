@@ -4,21 +4,21 @@ namespace HamferTeam.Verification.Models;
 
 public class VerificationResult
 {
-  public List<LetsVerifyError> Exceptions { get; }
+  public List<LetsVerifyError> Errors { get; }
 
   public List<string> VerificationLogs { get; }
 
   public VerificationResult()
   {
-      Exceptions = [];
+      Errors = [];
       VerificationLogs = [];
   }
 
-  public bool HasException
-      => Exceptions.Count > 0;
+  public bool HasError
+      => Errors.Count > 0;
 
-  public void AddException(LetsVerifyError error)
-      => Exceptions.Add(error);
+  public void AddError(LetsVerifyError error)
+      => Errors.Add(error);
 
   public void AddLog(string log)
       => VerificationLogs.Add(log);

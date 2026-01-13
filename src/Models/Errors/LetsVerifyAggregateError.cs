@@ -12,6 +12,6 @@ public class LetsVerifyAggregateError : LetsVerifyError, IAggregatedError<LetsVe
 
   public LetsVerifyError[] InnerErrors { get; }
 
-  public IEnumerable<Exception> GetInnerExceptions()
+  public IEnumerable<Exception> GetInnerErrors()
     => InnerErrors;
 }

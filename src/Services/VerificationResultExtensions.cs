@@ -389,9 +389,9 @@ public static class VerificationResultExtensions
     outResult = result;
   }
 
-  public static void ThenRaiseException(this VerificationResult result)
+  public static void ThenThrowErrors(this VerificationResult result)
   {
-    var ex = result.ConverToException();
+    var ex = result.PrepareErrors();
 
     if (ex != null)
     {
@@ -424,24 +424,24 @@ public static class VerificationResultExtensions
     }
     catch (LetsVerifyError error)
     {
-        result.AddException(error);
+        result.AddError(error);
         result.AddLog($"خطا در بررسی {actionName}:" + error.Message);
     }
     catch (Exception error)
     {
         var unhandledError = new LetsVerifyUnhandledError(error);
-        result.AddException(unhandledError);
+        result.AddError(unhandledError);
         result.AddLog($"###. خطای مدیریت نشده در بررسی {actionName}:" + error.Message);
     }
 
     return result;
   }
 
-  private static LetsVerifyError? ConverToException(this VerificationResult result)
+  private static LetsVerifyAggregateError? PrepareErrors(this VerificationResult result)
   {
-    if (result.HasException)
+    if (result.HasError)
     {
-      return new LetsVerifyAggregateError($"در بررسی {result.Exceptions.Count} مورد اشکال شناسایی گردید.", [.. result.Exceptions]);
+      return new LetsVerifyAggregateError($"در بررسی {result.Errors.Count} مورد اشکال شناسایی گردید.", [.. result.Errors]);
     }
 
     return null;
