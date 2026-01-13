@@ -213,6 +213,9 @@ public static class VerificationResultExtensions
 
   #region Property Assertions for STRINGS only!
   public static VerificationResult AssertMatch(this VerificationResult result, string regexPattern)
+  => AssertMatch(result, new Regex(regexPattern));
+
+  public static VerificationResult AssertMatch(this VerificationResult result, Regex regex)
   => Handle(result, "تطبیق قالب", () =>
   {
     if (_propertyType != typeof(string) || string.IsNullOrEmpty(_propertyValue))
@@ -220,7 +223,7 @@ public static class VerificationResultExtensions
       return;
     }
 
-    if (!Regex.IsMatch(_propertyValue, regexPattern))
+    if (!regex.IsMatch(_propertyValue))
     {
       throw new LetsVerifyAssertStringError($"متن {_name} منطبق بر قالب درخواستی نمی‌باشد!");
     }
