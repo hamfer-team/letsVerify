@@ -1,6 +1,6 @@
 ﻿using HamferTeam.Kernel.Errors;
 
-namespace HamferTeam.LetsVerify.Models.Errors;
+namespace HamferTeam.Verification.Models.Errors;
 
 public class LetsVerifyError : KernelError
 {

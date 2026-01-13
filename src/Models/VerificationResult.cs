@@ -1,6 +1,6 @@
-﻿using HamferTeam.LetsVerify.Models.Errors;
+﻿using HamferTeam.Verification.Models.Errors;
 
-namespace HamferTeam.LetsVerify.Models;
+namespace HamferTeam.Verification.Models;
 
 public class VerificationResult
 {

@@ -1,6 +1,6 @@
-﻿using HamferTeam.LetsVerify.Models;
+﻿using HamferTeam.Verification.Models;
 
-namespace HamferTeam.LetsVerify.Services;
+namespace HamferTeam.Verification.Services;
 
 public static class LetsVerify
 {

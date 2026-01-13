@@ -1,17 +1,17 @@
-﻿using HamferTeam.Kernel.Models.Errors;
+﻿using HamferTeam.Kernel.Errors;
 
-namespace HamferTeam.LetsVerify.Models.Errors;
+namespace HamferTeam.Verification.Models.Errors;
 
 public class LetsVerifyAggregateError : LetsVerifyError, IAggregatedError<LetsVerifyError>
 {
-  public LetsVerifyAggregateError(string? message = null, params LetsVerifyError[] innerExceptions)
+  public LetsVerifyAggregateError(string? message = null, params LetsVerifyError[] innerErrors)
     : base(message)
   {
-    InnerExceptions = innerExceptions;
+    InnerErrors = innerErrors;
   }
 
-  public LetsVerifyError[] InnerExceptions { get; }
+  public LetsVerifyError[] InnerErrors { get; }
 
   public IEnumerable<Exception> GetInnerExceptions()
-    => InnerExceptions;
+    => InnerErrors;
 }

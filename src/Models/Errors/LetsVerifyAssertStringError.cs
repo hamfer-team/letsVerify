@@ -1,4 +1,4 @@
-﻿namespace HamferTeam.LetsVerify.Models.Errors;
+﻿namespace HamferTeam.Verification.Models.Errors;
 
 public class LetsVerifyAssertStringError : LetsVerifyError
 {

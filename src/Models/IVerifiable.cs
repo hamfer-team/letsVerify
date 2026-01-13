@@ -1,6 +1,6 @@
-﻿using HamferTeam.Kernel.Models.Errors;
+﻿using HamferTeam.Kernel.Errors;
 
-namespace HamferTeam.LetsVerify.Models;
+namespace HamferTeam.Verification.Models;
 
 public interface IVerifiable<TModel>
   where TModel : class

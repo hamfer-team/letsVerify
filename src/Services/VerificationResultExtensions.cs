@@ -1,11 +1,11 @@
 ﻿using HamferTeam.Kernel.Utils;
-using HamferTeam.LetsVerify.Models;
-using HamferTeam.LetsVerify.Models.Errors;
+using HamferTeam.Verification.Models;
+using HamferTeam.Verification.Models.Errors;
 using Microsoft.CSharp.RuntimeBinder;
 using System.Collections;
 using System.Text.RegularExpressions;
 
-namespace HamferTeam.LetsVerify.Utils;
+namespace HamferTeam.Verification.Services;
 
 public static class VerificationResultExtensions
 {
