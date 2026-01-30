@@ -1,6 +1,6 @@
-﻿using HamferTeam.Verification.Models.Errors;
+﻿using Hamfer.Verification.Models.Errors;
 
-namespace HamferTeam.Verification.Models;
+namespace Hamfer.Verification.Models;
 
 public class VerificationResult
 {

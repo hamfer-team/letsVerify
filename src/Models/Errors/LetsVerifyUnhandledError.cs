@@ -1,4 +1,4 @@
-﻿namespace HamferTeam.Verification.Models.Errors;
+﻿namespace Hamfer.Verification.Models.Errors;
 
 public class LetsVerifyUnhandledError : LetsVerifyError
 {

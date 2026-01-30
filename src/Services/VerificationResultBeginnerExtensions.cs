@@ -1,8 +1,8 @@
-﻿using HamferTeam.Kernel.Utils;
-using HamferTeam.Verification.Models;
+﻿using Hamfer.Kernel.Utils;
+using Hamfer.Verification.Models;
 using System.Collections;
 
-namespace HamferTeam.Verification.Services;
+namespace Hamfer.Verification.Services;
 
 public static partial class VerificationResultExtensions
 {

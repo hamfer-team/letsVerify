@@ -6,7 +6,7 @@
     <Company>Hamfer</Company>
     <Copyright>Copyright © Hamfer</Copyright>
 
-    <PackageId>HamferTeam.Verification</PackageId>
+    <PackageId>Hamfer.Verification</PackageId>
     <PackageTags>letsverify,verification,validation,test</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <PackageProjectUrl>https://hamfer.team/</PackageProjectUrl>
@@ -16,7 +16,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>HamferTeam.Verification</RootNamespace>
+    <RootNamespace>Hamfer.Verification</RootNamespace>
     <Version>0.2.2</Version>
   </PropertyGroup>
 

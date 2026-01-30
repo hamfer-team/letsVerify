@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
-using HamferTeam.Kernel.Utils;
-using HamferTeam.Verification.Models;
-using HamferTeam.Verification.Models.Errors;
+using Hamfer.Kernel.Utils;
+using Hamfer.Verification.Models;
+using Hamfer.Verification.Models.Errors;
 
-namespace HamferTeam.Verification.Services;
+namespace Hamfer.Verification.Services;
 
 public static partial class VerificationResultExtensions
 {

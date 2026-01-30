@@ -1,6 +1,6 @@
-﻿using HamferTeam.Kernel.Errors;
+﻿using Hamfer.Kernel.Errors;
 
-namespace HamferTeam.Verification.Models;
+namespace Hamfer.Verification.Models;
 
 public abstract class VerifiableModelBase<TModel> : IVerifiable<TModel>
   where TModel : class

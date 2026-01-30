@@ -1,6 +1,6 @@
-﻿using HamferTeam.Kernel.Errors;
+﻿using Hamfer.Kernel.Errors;
 
-namespace HamferTeam.Verification.Models.Errors;
+namespace Hamfer.Verification.Models.Errors;
 
 public class LetsVerifyAggregateError : LetsVerifyError, IAggregatedError<LetsVerifyError>
 {

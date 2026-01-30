@@ -1,6 +1,6 @@
-﻿using HamferTeam.Verification.Models;
+﻿using Hamfer.Verification.Models;
 
-namespace HamferTeam.Verification.Services;
+namespace Hamfer.Verification.Services;
 
 public static partial class VerificationResultExtensions
 {

@@ -1,7 +1,7 @@
-using HamferTeam.Verification.Models;
-using HamferTeam.Verification.Models.Errors;
+using Hamfer.Verification.Models;
+using Hamfer.Verification.Models.Errors;
 
-namespace HamferTeam.Verification.Services;
+namespace Hamfer.Verification.Services;
 
 public static partial class VerificationResultExtensions
 {
