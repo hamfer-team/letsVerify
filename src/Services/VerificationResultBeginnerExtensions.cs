@@ -14,7 +14,7 @@ public static partial class VerificationResultExtensions
   /// <param name="property">The property of instance or any other variable</param>
   /// <param name="name">The name of property for refering to it in messages</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
-  public static VerificationResult For<TProperty>(this VerificationResult result, TProperty property, string name)
+  public static VerificationResult Assert<TProperty>(this VerificationResult result, TProperty property, string name)
   {
     Name = name;
     PropertyValue = property;
@@ -29,7 +29,7 @@ public static partial class VerificationResultExtensions
       EnumerableCount = PropertyType.IsArray ? PropertyValue?.Length : (PropertyValue as IEnumerable<object>)?.Count();
     }
 
-    result.AddLog($"+++. فیلدی با نام {name} جهت بررسی تعیین شد.");
+    result.addLog($"+++. فیلدی با نام {name} جهت بررسی تعیین شد.");
     return result;
   }
 
@@ -40,10 +40,10 @@ public static partial class VerificationResultExtensions
   /// <param name="property">The property of instance</param>
   /// <param name="name">The name of property for refering to it in messages</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
-  public static VerificationResult AndIgnore(this VerificationResult result, dynamic property, string name)
+  public static VerificationResult Ignore(this VerificationResult result, dynamic property, string name)
   {
     PropertyValue = property;
-    result.AddLog($"---. از بررسی فیلدی با نام {name} صرف نظر شد.");
+    result.addLog($"---. از بررسی فیلدی با نام {name} صرف نظر شد.");
     return result;
   }
 }

@@ -10,7 +10,7 @@ public static class LetsVerify
     return new VerificationResult();
   }
 
-  public static VerificationResult OnNothing()
+  public static VerificationResult On()
   {
     return new VerificationResult();
   }

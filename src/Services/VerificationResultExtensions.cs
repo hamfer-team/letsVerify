@@ -1,5 +1,5 @@
-﻿using Hamfer.Verification.Models;
-using Hamfer.Verification.Models.Errors;
+﻿using Hamfer.Verification.Errors;
+using Hamfer.Verification.Models;
 
 namespace Hamfer.Verification.Services;
 
@@ -26,25 +26,25 @@ public static partial class VerificationResultExtensions
       // بررسی مقدار نال نیازی نمی‌باشد
       if (IsNull && ignoreNull)
       {
-        result.AddLog($"بررسی {actionName} به علت تهی بودن انجام نشد.");
+        result.addLog($"بررسی {actionName} به علت تهی بودن انجام نشد.");
         return result;
       }
 
       act?.Invoke();
 
-      result.AddLog($"در بررسی {actionName} اشکالی یافت نشد.");
+      result.addLog($"در بررسی {actionName} اشکالی یافت نشد.");
       return result;
     }
     catch (LetsVerifyError error)
     {
-        result.AddError(error);
-        result.AddLog($"خطا در بررسی {actionName}:" + error.Message);
+        result.addError(error);
+        result.addLog($"خطا در بررسی {actionName}:" + error.Message);
     }
     catch (Exception error)
     {
         var unhandledError = new LetsVerifyUnhandledError(error);
-        result.AddError(unhandledError);
-        result.AddLog($"###. خطای مدیریت نشده در بررسی {actionName}:" + error.Message);
+        result.addError(unhandledError);
+        result.addLog($"###. خطای مدیریت نشده در بررسی {actionName}:" + error.Message);
     }
 
     return result;
@@ -52,9 +52,9 @@ public static partial class VerificationResultExtensions
 
   private static LetsVerifyAggregateError? PrepareErrors(this VerificationResult result)
   {
-    if (result.HasError)
+    if (result.hasError)
     {
-      return new LetsVerifyAggregateError($"در بررسی {result.Errors.Count} مورد اشکال شناسایی گردید.", [.. result.Errors]);
+      return new LetsVerifyAggregateError($"در بررسی {result.errors.Count} مورد اشکال شناسایی گردید.", [.. result.errors]);
     }
 
     return null;

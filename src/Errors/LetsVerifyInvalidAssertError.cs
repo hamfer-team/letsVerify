@@ -1,4 +1,4 @@
-﻿namespace Hamfer.Verification.Models.Errors;
+﻿namespace Hamfer.Verification.Errors;
 
 public class LetsVerifyInvalidAssertError : LetsVerifyError
 {

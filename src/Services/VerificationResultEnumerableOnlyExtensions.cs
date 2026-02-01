@@ -1,6 +1,6 @@
 using Hamfer.Kernel.Utils;
+using Hamfer.Verification.Errors;
 using Hamfer.Verification.Models;
-using Hamfer.Verification.Models.Errors;
 
 namespace Hamfer.Verification.Services;
 
@@ -16,7 +16,7 @@ public static partial class VerificationResultExtensions
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyError"></exception>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertIsMemeberOf<T>(this VerificationResult result, IEnumerable<T>? list)
+  public static VerificationResult IsMemeberOf<T>(this VerificationResult result, IEnumerable<T>? list)
   => Handle(result, "عضوی از فهرست بودن", () =>
   {
     if (list == null)
@@ -37,7 +37,7 @@ public static partial class VerificationResultExtensions
       {
         foreach (object item in PropertyValue)
         {
-          result = For(result, item, "عضو فهرست").AssertIsMemeberOf(list);
+          result = Assert(result, item, "عضو فهرست").IsMemeberOf(list);
         }
       }
     }
@@ -49,7 +49,7 @@ public static partial class VerificationResultExtensions
   /// <param name="func">The custom verification</param>
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
-  public static VerificationResult AssertForEachBy(this VerificationResult result, Func<VerificationResult, VerificationResult> func)
+  public static VerificationResult ForEachBy(this VerificationResult result, Func<VerificationResult, VerificationResult> func)
   {
     if (!IsEnumerable)
     {
@@ -72,7 +72,7 @@ public static partial class VerificationResultExtensions
   /// </summary>
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
-  public static VerificationResult VerifyAllItems(this VerificationResult result)
+  public static VerificationResult VerifyAll(this VerificationResult result)
   {
     if (!IsEnumerable)
     {

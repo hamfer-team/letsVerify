@@ -1,25 +1,25 @@
-﻿using Hamfer.Verification.Models.Errors;
+﻿using Hamfer.Verification.Errors;
 
 namespace Hamfer.Verification.Models;
 
 public class VerificationResult
 {
-  public List<LetsVerifyError> Errors { get; }
+  public List<LetsVerifyError> errors { get; }
 
-  public List<string> VerificationLogs { get; }
+  public List<string> verificationLogs { get; }
 
   public VerificationResult()
   {
-      Errors = [];
-      VerificationLogs = [];
+      errors = [];
+      verificationLogs = [];
   }
 
-  public bool HasError
-      => Errors.Count > 0;
+  public bool hasError 
+      => errors.Count > 0;
 
-  public void AddError(LetsVerifyError error)
-      => Errors.Add(error);
+  public void addError(LetsVerifyError error)
+      => errors.Add(error);
 
-  public void AddLog(string log)
-      => VerificationLogs.Add(log);
+  public void addLog(string log)
+      => verificationLogs.Add(log);
 }

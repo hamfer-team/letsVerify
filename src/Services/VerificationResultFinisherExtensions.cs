@@ -9,7 +9,7 @@ public static partial class VerificationResultExtensions
   /// </summary>
   /// <param name="result">Current verification-result instance</param>
   /// <param name="outResult">Current verification-result instance</param>
-  public static void ThenJustSendOutResult(this VerificationResult result, out VerificationResult outResult)
+  public static void ThenGetResult(this VerificationResult result, out VerificationResult outResult)
   {
     outResult = result;
   }

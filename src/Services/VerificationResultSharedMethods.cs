@@ -1,4 +1,4 @@
-﻿using Hamfer.Verification.Models.Errors;
+﻿using Hamfer.Verification.Errors;
 using Microsoft.CSharp.RuntimeBinder;
 
 namespace Hamfer.Verification.Services;
@@ -36,7 +36,7 @@ public static partial class VerificationResultExtensions
   /// </summary>
   /// <param name="minLength">The minimum size of length</param>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  private static void AssertMinLength(ushort minLength)
+  private static void MinLength(ushort minLength)
   {
     if (PropertyValue?.Length < minLength)
     {
@@ -49,7 +49,7 @@ public static partial class VerificationResultExtensions
   /// </summary>
   /// <param name="minCount">The mimimum count</param>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  private static void AssertMinCount(ushort minCount)
+  private static void MinCount(ushort minCount)
   {
     if (EnumerableCount < minCount)
     {
@@ -62,7 +62,7 @@ public static partial class VerificationResultExtensions
   /// </summary>
   /// <param name="maxLength">The maximum size of length</param>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  private static void AssertMaxLength(ushort maxLength)
+  private static void MaxLength(ushort maxLength)
   {
     if (PropertyValue?.Length > maxLength)
     {
@@ -75,7 +75,7 @@ public static partial class VerificationResultExtensions
   /// </summary>
   /// <param name="maxCount">The maximum count</param>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  private static void AssertMaxCount(ushort maxCount)
+  private static void MaxCount(ushort maxCount)
   {
     if (EnumerableCount > maxCount)
     {

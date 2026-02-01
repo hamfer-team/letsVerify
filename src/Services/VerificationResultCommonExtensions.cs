@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Hamfer.Kernel.Utils;
+using Hamfer.Verification.Errors;
 using Hamfer.Verification.Models;
-using Hamfer.Verification.Models.Errors;
 
 namespace Hamfer.Verification.Services;
 
@@ -14,7 +14,7 @@ public static partial class VerificationResultExtensions
   /// <param name="clause">The customized condition/clause</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyInvalidAssertError"></exception>
-  public static VerificationResult AssertTrue(this VerificationResult result, Func<dynamic, bool> clause)
+  public static VerificationResult By(this VerificationResult result, Func<dynamic, bool> clause)
   => Handle(result, "صحت داشتن", () =>
   {
     var isTrue = clause.Invoke(PropertyValue);
@@ -33,7 +33,7 @@ public static partial class VerificationResultExtensions
   /// <param name="expected">The expected value</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyInvalidAssertError"></exception>
-  public static VerificationResult AssertEquals<TExpected>(this VerificationResult result, TExpected expected) where TExpected : IEquatable<TExpected>
+  public static VerificationResult Equals<TExpected>(this VerificationResult result, TExpected expected) where TExpected : IEquatable<TExpected>
   => Handle(result, "برابری", () =>
   {
     // TODO Check for _propertyType IEquatable<TExpected>
@@ -50,7 +50,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertNullError"></exception>
-  public static VerificationResult AssertNotNull(this VerificationResult result)
+  public static VerificationResult NotNull(this VerificationResult result)
   => Handle(result, "نال نبودن", ()=> 
   { 
     if(IsNull)
@@ -65,7 +65,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertIsNumeric(this VerificationResult result)
+  public static VerificationResult IsNumeric(this VerificationResult result)
   => Handle(result, "عددی بودن", () =>
   {
     var throwIt = false;
@@ -102,7 +102,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertIsEnum<TEnum>(this VerificationResult result) where TEnum : struct
+  public static VerificationResult IsEnum<TEnum>(this VerificationResult result) where TEnum : struct
   => Handle(result, "مقدار شمارشی بودن", () =>
   {
     if (PropertyType == typeof(string) && string.IsNullOrEmpty(PropertyValue))

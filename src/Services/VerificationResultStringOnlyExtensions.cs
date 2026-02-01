@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using Hamfer.Kernel.Utils;
+using Hamfer.Verification.Errors;
 using Hamfer.Verification.Models;
-using Hamfer.Verification.Models.Errors;
 
 namespace Hamfer.Verification.Services;
 
@@ -13,8 +13,8 @@ public static partial class VerificationResultExtensions
   /// <param name="regexPattern">The reqular-expression pattern</param>
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
-  public static VerificationResult AssertMatch(this VerificationResult result, string regexPattern)
-  => AssertMatch(result, new Regex(regexPattern));
+  public static VerificationResult Match(this VerificationResult result, string regexPattern)
+  => Match(result, new Regex(regexPattern));
 
   /// <summary>
   /// Check if value of a string proprty can match with a regular-expression
@@ -23,7 +23,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertMatch(this VerificationResult result, Regex regex)
+  public static VerificationResult Match(this VerificationResult result, Regex regex)
   => Handle(result, "تطبیق قالب", () =>
   {
     if (PropertyType != typeof(string) || string.IsNullOrEmpty(PropertyValue))
@@ -43,7 +43,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertIsNationalCode(this VerificationResult result)
+  public static VerificationResult NationalCode(this VerificationResult result)
   => Handle(result, "کد ملی بودن", () =>
   {
     if (PropertyType != typeof(string) || string.IsNullOrEmpty(PropertyValue))
@@ -63,7 +63,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertIsMobileNo(this VerificationResult result)
+  public static VerificationResult MobileNo(this VerificationResult result)
   => Handle(result, "شماره همراه بودن", () =>
   {
     if (PropertyType != typeof(string) || string.IsNullOrEmpty(PropertyValue))
@@ -83,7 +83,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertIsPersianDate(this VerificationResult result)
+  public static VerificationResult PersianDate(this VerificationResult result)
   => Handle(result, "تاریخ شمسی بودن", () =>
   {
     if (PropertyType != typeof(string) || string.IsNullOrEmpty(PropertyValue))
@@ -103,7 +103,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertIsFileName(this VerificationResult result)
+  public static VerificationResult FileName(this VerificationResult result)
   => Handle(result, "مناسب نام فایل بودن", () =>
   {
     if (PropertyType != typeof(string) || string.IsNullOrEmpty(PropertyValue))
@@ -124,7 +124,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertCsv(this VerificationResult result, out string[]? rows)
+  public static VerificationResult Csv(this VerificationResult result, out string[]? rows)
   {
     rows = null;
     var isOk = false;
@@ -159,7 +159,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertCsvRow(this VerificationResult result, out string[]? columns)
+  public static VerificationResult CsvRow(this VerificationResult result, out string[]? columns)
   {
     columns = null;
     var isOk = false;

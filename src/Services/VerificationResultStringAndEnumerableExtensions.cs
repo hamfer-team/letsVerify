@@ -1,5 +1,5 @@
+using Hamfer.Verification.Errors;
 using Hamfer.Verification.Models;
-using Hamfer.Verification.Models.Errors;
 
 namespace Hamfer.Verification.Services;
 
@@ -12,7 +12,7 @@ public static partial class VerificationResultExtensions
 /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertNullError"></exception>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertNotNullOrEmpty(this VerificationResult result)
+  public static VerificationResult NotNullOrEmpty(this VerificationResult result)
   => Handle(result, "خالی نبودن", () =>
   {
     if (IsNull)
@@ -41,17 +41,17 @@ public static partial class VerificationResultExtensions
   /// <param name="min">The mimimum size</param>
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
-  public static VerificationResult AssertMinLength(this VerificationResult result, ushort min)
+  public static VerificationResult LengthMin(this VerificationResult result, ushort min)
   => Handle(result, "داشتن حداقل طول", () =>
   {
     if (PropertyType == typeof(string))
     {
-      AssertMinLength(min);
+      MinLength(min);
     }
 
     if (IsEnumerable)
     {
-      AssertMinCount(min);
+      MinCount(min);
     }
   });
 
@@ -61,17 +61,17 @@ public static partial class VerificationResultExtensions
   /// <param name="max">The maximum size</param>
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
-  public static VerificationResult AssertMaxLength(this VerificationResult result, ushort max)
+  public static VerificationResult LengthMax(this VerificationResult result, ushort max)
   => Handle(result, "داشتن حداکثر طول", () =>
   {
     if (PropertyType == typeof(string))
     {
-      AssertMaxLength(max);
+      MaxLength(max);
     }
 
     if (IsEnumerable)
     {
-      AssertMaxCount(max);
+      MaxCount(max);
     }
   });
 
@@ -82,19 +82,19 @@ public static partial class VerificationResultExtensions
   /// <param name="max">The maximum size</param>
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
-  public static VerificationResult AssertLengthBetween(this VerificationResult result, ushort min, ushort max)
+  public static VerificationResult Length(this VerificationResult result, ushort min, ushort max)
   => Handle(result, "داشتن طول محدود", () =>
   {
     if (PropertyType == typeof(string))
     {
-      AssertMinLength(min);
-      AssertMaxLength(max);
+      MinLength(min);
+      MaxLength(max);
     }
 
     if (IsEnumerable)
     {
-      AssertMinCount(min);
-      AssertMaxCount(max);
+      MinCount(min);
+      MaxCount(max);
     }
   });
 
@@ -105,7 +105,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  public static VerificationResult AssertLength(this VerificationResult result, ushort length)
+  public static VerificationResult Length(this VerificationResult result, ushort length)
   => Handle(result, "داشتن طول مشخص", () =>
   {
     if (PropertyType == typeof(string))

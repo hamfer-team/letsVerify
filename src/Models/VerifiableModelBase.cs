@@ -5,14 +5,14 @@ namespace Hamfer.Verification.Models;
 public abstract class VerifiableModelBase<TModel> : IVerifiable<TModel>
   where TModel : class
 {
-    public abstract void Verify();
+    public abstract void verify();
 
-    public bool TryVerify(out KernelError? error)
+    public bool tryVerify(out KernelError? error)
     {
         error = null;
         try
         {
-            this.Verify();
+            this.verify();
             return true;
         }
         catch (KernelError err)

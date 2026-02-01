@@ -5,6 +5,6 @@ namespace Hamfer.Verification.Models;
 public interface IVerifiable<TModel>
   where TModel : class
 {
-  void Verify();
-  bool TryVerify(out KernelError? error);
+  void verify();
+  bool tryVerify(out KernelError? error);
 }
