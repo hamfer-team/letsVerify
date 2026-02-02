@@ -14,4 +14,15 @@ public class LetsVerifyAggregateError : LetsVerifyError, IAggregatedError<LetsVe
 
   public IEnumerable<Exception> getInnerErrors()
     => innerErrors;
+
+  public void writeMessages()
+  {
+    for (int i = 0; i < this.innerErrors.Length; i++)
+    {
+      Console.ForegroundColor = ConsoleColor.Red;
+      Console.Write($"{i + 1}. ");
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.WriteLine(this.innerErrors[i].Message);
+    }
+  }
 }

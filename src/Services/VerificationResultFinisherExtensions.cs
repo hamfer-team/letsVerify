@@ -1,4 +1,5 @@
-﻿using Hamfer.Verification.Models;
+﻿using Hamfer.Verification.Errors;
+using Hamfer.Verification.Models;
 
 namespace Hamfer.Verification.Services;
 
@@ -20,7 +21,7 @@ public static partial class VerificationResultExtensions
   /// <param name="result">Current verification-result instance</param>
   public static void ThenThrowErrors(this VerificationResult result)
   {
-    var errors = result.PrepareErrors();
+    LetsVerifyAggregateError? errors = result.PrepareErrors();
 
     if (errors != null)
     {
