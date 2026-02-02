@@ -4,10 +4,10 @@ namespace Hamfer.Verification.Services;
 
 public static class LetsVerify
 {
-  public static VerificationResult On<TObject>(TObject @object)
+  public static VerificationResult On<TObject>(TObject @object, string? objectName = null)
     where TObject : class, IVerifiable<TObject>
   {
-    return new VerificationResult();
+    return new VerificationResult(objectName ?? typeof(TObject).Name);
   }
 
   public static VerificationResult On()

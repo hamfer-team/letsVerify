@@ -21,7 +21,7 @@ public static partial class VerificationResultExtensions
 
     if (!isTrue)
     {
-      throw new LetsVerifyInvalidAssertError($"شرایط مورد در {Name} نظر وجود ندارد!");
+      throw new LetsVerifyInvalidAssertError(result.objectName, $"شرایط مورد در {Name} نظر وجود ندارد!");
     }
   });
 
@@ -40,7 +40,7 @@ public static partial class VerificationResultExtensions
 
     if (!PropertyValue?.Equals(expected))
     {
-      throw new LetsVerifyInvalidAssertError($"مقدار !");
+      throw new LetsVerifyInvalidAssertError(result.objectName, $"مقدار !");
     }
   });
 
@@ -55,7 +55,7 @@ public static partial class VerificationResultExtensions
   { 
     if(IsNull)
     {
-      throw new LetsVerifyAssertNullError(Name);
+      throw new LetsVerifyAssertNullError(result.objectName, Name);
     }
   }, ignoreNull: false);
 
@@ -91,7 +91,7 @@ public static partial class VerificationResultExtensions
 
     if (throwIt)
     {
-      throw new LetsVerifyAssertStringError($"مقدار {Name} باید عددی باشد!");
+      throw new LetsVerifyAssertStringError(result.objectName, $"مقدار {Name} باید عددی باشد!");
     }
   });
 
@@ -112,7 +112,7 @@ public static partial class VerificationResultExtensions
 
     if(!Enum.TryParse<TEnum>(PropertyValue?.ToString(), out TEnum _))
     {
-      throw new LetsVerifyAssertStringError($"مقدار {Name} جزء مقادیر معتبر نمی‌باشد!");
+      throw new LetsVerifyAssertStringError(result.objectName, $"مقدار {Name} جزء مقادیر معتبر نمی‌باشد!");
     }
   });
 }

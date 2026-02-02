@@ -2,7 +2,7 @@
 
 public class LetsVerifyInvalidAssertError : LetsVerifyError
 {
-  public LetsVerifyInvalidAssertError(string message) : base(message)
+  public LetsVerifyInvalidAssertError(string? objectName, string message) : base(objectName, message)
   {
   }
 }

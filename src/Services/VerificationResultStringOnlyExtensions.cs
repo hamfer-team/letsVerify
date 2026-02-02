@@ -33,7 +33,7 @@ public static partial class VerificationResultExtensions
 
     if (!regex.IsMatch(PropertyValue))
     {
-      throw new LetsVerifyAssertStringError($"متن {Name} منطبق بر قالب درخواستی نمی‌باشد!");
+      throw new LetsVerifyAssertStringError(result.objectName, $"متن {Name} منطبق بر قالب درخواستی نمی‌باشد!");
     }
   });
 
@@ -53,7 +53,7 @@ public static partial class VerificationResultExtensions
 
     if (!PersianStringHelper.VerifyNationalCodeCheckSum(PropertyValue))
     {
-      throw new LetsVerifyAssertStringError($"مقدار {Name} یک کد ملی معتبر نمی‌باشد!");
+      throw new LetsVerifyAssertStringError(result.objectName, $"مقدار {Name} یک کد ملی معتبر نمی‌باشد!");
     }
   });
 
@@ -73,7 +73,7 @@ public static partial class VerificationResultExtensions
 
     if (!Regex.IsMatch(PropertyValue, @"^09[0-9]{9}$"))
     {
-      throw new LetsVerifyAssertStringError($"مقدار {Name}({PropertyValue}) یک شماره همراه معتبر نمی‌باشد!");
+      throw new LetsVerifyAssertStringError(result.objectName, $"مقدار {Name}({PropertyValue}) یک شماره همراه معتبر نمی‌باشد!");
     }
   });
 
@@ -93,7 +93,7 @@ public static partial class VerificationResultExtensions
 
     if (!Regex.IsMatch(PropertyValue, @"^\d{4}[\\\/\- ]\d\d?[\\\/\- ]\d\d?([ ,\-]\d\d?[\\\.\:\,](\d\d)?([\\\.\:\,](\d\d)?([[\\\.\:\,](\d{1,6})])?)?)?$"))
     {
-      throw new LetsVerifyAssertStringError($"مقدار {Name} یک تاریخ شمسی معتبر نمی‌باشد!");
+      throw new LetsVerifyAssertStringError(result.objectName, $"مقدار {Name} یک تاریخ شمسی معتبر نمی‌باشد!");
     }
   });
 
@@ -113,7 +113,7 @@ public static partial class VerificationResultExtensions
 
     if (!IOHelper.IsFileNameValid(PropertyValue))
     {
-      throw new LetsVerifyAssertStringError($"مقدار {Name} نمی‌تواند نام فایل باشد!");
+      throw new LetsVerifyAssertStringError(result.objectName, $"مقدار {Name} نمی‌تواند نام فایل باشد!");
     }
   });
 
@@ -138,7 +138,7 @@ public static partial class VerificationResultExtensions
 
       if (!Regex.IsMatch(PropertyValue, @"^\s*([^,]+)(,[^,\r\n]+)+\s*$"))
       {
-        throw new LetsVerifyAssertStringError($"متن {Name} منطبق بر قالب سی-اس-وی نمی‌باشد!");
+        throw new LetsVerifyAssertStringError(result.objectName, $"متن {Name} منطبق بر قالب سی-اس-وی نمی‌باشد!");
       }
 
       isOk = true;
@@ -173,7 +173,7 @@ public static partial class VerificationResultExtensions
 
       if (!Regex.IsMatch(PropertyValue, @"^\s*([^,]+)(,[^,]+)+\s*$"))
       {
-        throw new LetsVerifyAssertStringError($"متن {Name} منطبق بر قالب سطر سی-اس-وی نمی‌باشد!");
+        throw new LetsVerifyAssertStringError(result.objectName, $"متن {Name} منطبق بر قالب سطر سی-اس-وی نمی‌باشد!");
       }
 
       isOk = true;

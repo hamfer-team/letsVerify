@@ -36,11 +36,11 @@ public static partial class VerificationResultExtensions
   /// </summary>
   /// <param name="minLength">The minimum size of length</param>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  private static void MinLength(ushort minLength)
+  private static void MinLength(ushort minLength, string? objectName)
   {
     if (PropertyValue?.Length < minLength)
     {
-      throw new LetsVerifyAssertStringError($"متن {Name} باید حداقل {minLength} حرف داشته باشد!");
+      throw new LetsVerifyAssertStringError(objectName, $"متن {Name} باید حداقل {minLength} حرف داشته باشد!");
     }
   }
   
@@ -49,11 +49,11 @@ public static partial class VerificationResultExtensions
   /// </summary>
   /// <param name="minCount">The mimimum count</param>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  private static void MinCount(ushort minCount)
+  private static void MinCount(ushort minCount, string? objectName)
   {
     if (EnumerableCount < minCount)
     {
-      throw new LetsVerifyAssertStringError($"فهرست {Name} باید حداقل شامل {minCount} قلم باشد!");
+      throw new LetsVerifyAssertStringError(objectName, $"فهرست {Name} باید حداقل شامل {minCount} قلم باشد!");
     }
   }
 
@@ -62,11 +62,11 @@ public static partial class VerificationResultExtensions
   /// </summary>
   /// <param name="maxLength">The maximum size of length</param>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  private static void MaxLength(ushort maxLength)
+  private static void MaxLength(ushort maxLength, string? objectName)
   {
     if (PropertyValue?.Length > maxLength)
     {
-      throw new LetsVerifyAssertStringError($"متن {Name} باید حداکثر {maxLength} حرف داشته باشد!");
+      throw new LetsVerifyAssertStringError(objectName, $"متن {Name} باید حداکثر {maxLength} حرف داشته باشد!");
     }
   }
 
@@ -75,11 +75,11 @@ public static partial class VerificationResultExtensions
   /// </summary>
   /// <param name="maxCount">The maximum count</param>
   /// <exception cref="LetsVerifyAssertStringError"></exception>
-  private static void MaxCount(ushort maxCount)
+  private static void MaxCount(ushort maxCount, string? objectName)
   {
     if (EnumerableCount > maxCount)
     {
-      throw new LetsVerifyAssertStringError($"فهرست {Name} نباید بیشتر از {maxCount} قلم داشته باشد!");
+      throw new LetsVerifyAssertStringError(objectName, $"فهرست {Name} نباید بیشتر از {maxCount} قلم داشته باشد!");
     }
   }
 }

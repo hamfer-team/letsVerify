@@ -17,20 +17,20 @@ public static partial class VerificationResultExtensions
   {
     if (IsNull)
     {
-      throw new LetsVerifyAssertNullError(Name);
+      throw new LetsVerifyAssertNullError(result.objectName, Name);
     }
 
     if (PropertyType == typeof(string))
     {
       if (PropertyValue == string.Empty) // (string.IsNullOrEmpty(_propertyValue))
       {
-        throw new LetsVerifyAssertStringError($"متن {Name} نباید خالی باشد!");
+        throw new LetsVerifyAssertStringError(result.objectName, $"متن {Name} نباید خالی باشد!");
       }
     }
 
     if (IsEnumerable && EnumerableCount < 1)
     {
-      throw new LetsVerifyAssertStringError($"فهرست {Name} نباید خالی باشد!");
+      throw new LetsVerifyAssertStringError(result.objectName, $"فهرست {Name} نباید خالی باشد!");
     }
 
   }, ignoreNull: false);
@@ -46,12 +46,12 @@ public static partial class VerificationResultExtensions
   {
     if (PropertyType == typeof(string))
     {
-      MinLength(min);
+      MinLength(min, result.objectName);
     }
 
     if (IsEnumerable)
     {
-      MinCount(min);
+      MinCount(min, result.objectName);
     }
   });
 
@@ -66,12 +66,12 @@ public static partial class VerificationResultExtensions
   {
     if (PropertyType == typeof(string))
     {
-      MaxLength(max);
+      MaxLength(max, result.objectName);
     }
 
     if (IsEnumerable)
     {
-      MaxCount(max);
+      MaxCount(max, result.objectName);
     }
   });
 
@@ -87,14 +87,14 @@ public static partial class VerificationResultExtensions
   {
     if (PropertyType == typeof(string))
     {
-      MinLength(min);
-      MaxLength(max);
+      MinLength(min, result.objectName);
+      MaxLength(max, result.objectName);
     }
 
     if (IsEnumerable)
     {
-      MinCount(min);
-      MaxCount(max);
+      MinCount(min, result.objectName);
+      MaxCount(max, result.objectName);
     }
   });
 
@@ -112,7 +112,7 @@ public static partial class VerificationResultExtensions
     {
       if (PropertyValue?.Length != length)
       {
-        throw new LetsVerifyAssertStringError($"متن {Name} باید دقیقاً {length} حرف داشته باشد!");
+        throw new LetsVerifyAssertStringError(result.objectName, $"متن {Name} باید دقیقاً {length} حرف داشته باشد!");
       }
     }
 
@@ -120,7 +120,7 @@ public static partial class VerificationResultExtensions
     {
       if (EnumerableCount != length)
       {
-        throw new LetsVerifyAssertStringError($"فهرست {Name} باید فقط و فقط {length} قلم داشته باشد!");
+        throw new LetsVerifyAssertStringError(result.objectName, $"فهرست {Name} باید فقط و فقط {length} قلم داشته باشد!");
       }
     }
   });

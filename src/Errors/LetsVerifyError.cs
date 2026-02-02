@@ -4,8 +4,11 @@ namespace Hamfer.Verification.Errors;
 
 public class LetsVerifyError : KernelError
 {
-  public LetsVerifyError(string? message = null, Exception? innerError = null)
+  public string? objectName { get; }
+
+  public LetsVerifyError(string? objectName, string? message = null, Exception? innerError = null)
     : base(message, innerError)
   {
+    this.objectName = objectName;
   }
 }

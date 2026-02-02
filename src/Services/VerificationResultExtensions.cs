@@ -42,7 +42,7 @@ public static partial class VerificationResultExtensions
     }
     catch (Exception error)
     {
-        var unhandledError = new LetsVerifyUnhandledError(error);
+        var unhandledError = new LetsVerifyUnhandledError(result.objectName, error);
         result.addError(unhandledError);
         result.addLog($"###. خطای مدیریت نشده در بررسی {actionName}:" + error.Message);
     }
@@ -54,7 +54,7 @@ public static partial class VerificationResultExtensions
   {
     if (result.hasError)
     {
-      return new LetsVerifyAggregateError($"در بررسی {result.errors.Count} مورد اشکال شناسایی گردید.", [.. result.errors]);
+      return new LetsVerifyAggregateError(result.objectName, $"در بررسی {result.errors.Count} مورد اشکال شناسایی گردید.", [.. result.errors]);
     }
 
     return null;

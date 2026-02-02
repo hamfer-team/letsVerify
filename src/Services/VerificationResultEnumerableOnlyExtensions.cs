@@ -21,14 +21,14 @@ public static partial class VerificationResultExtensions
   {
     if (list == null)
     {
-      throw new LetsVerifyError("فهرست مقادیر نباید خالی (تهی) باشد!");
+      throw new LetsVerifyError(result.objectName, "فهرست مقادیر نباید خالی (تهی) باشد!");
     }
 
     if (!IsEnumerable)
     {
       if (list.All(w => w != PropertyValue))
       {
-        throw new LetsVerifyAssertStringError($"مقدار {Name} در فهرست متناظر آن یافت نشد!");
+        throw new LetsVerifyAssertStringError(result.objectName, $"مقدار {Name} در فهرست متناظر آن یافت نشد!");
       }
     }
     else

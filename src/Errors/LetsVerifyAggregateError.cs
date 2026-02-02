@@ -4,8 +4,8 @@ namespace Hamfer.Verification.Errors;
 
 public class LetsVerifyAggregateError : LetsVerifyError, IAggregatedError<LetsVerifyError>
 {
-  public LetsVerifyAggregateError(string? message = null, params LetsVerifyError[] innerErrors)
-    : base(message)
+  public LetsVerifyAggregateError(string? objectName, string? message = null, params LetsVerifyError[] innerErrors)
+    : base(objectName, message)
   {
     this.innerErrors = innerErrors;
   }
@@ -17,6 +17,11 @@ public class LetsVerifyAggregateError : LetsVerifyError, IAggregatedError<LetsVe
 
   public void writeMessages()
   {
+    if (this.objectName != null)
+    {
+      Console.WriteLine($"💢 {this.objectName} has <{this.innerErrors.Length}> error(s):");
+    }
+    
     for (int i = 0; i < this.innerErrors.Length; i++)
     {
       Console.ForegroundColor = ConsoleColor.Red;
