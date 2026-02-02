@@ -85,7 +85,7 @@ public static partial class VerificationResultExtensions
       {
         if(ReferenceTypeHelper.IsDerivedOfGenericInterface(item.GetType(), typeof(IVerifiable<>)))
         {
-            item.Verify();
+            item.verify();
         }
       }
     }
