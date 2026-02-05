@@ -10,6 +10,8 @@ public class VerificationResult
 
   public List<string> verificationLogs { get; }
 
+  public VerificationResult? parentResult { get; set; }
+
   public VerificationResult(string? objectName = null)
   {
     this.objectName = objectName;

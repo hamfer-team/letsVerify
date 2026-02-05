@@ -49,7 +49,7 @@ public static partial class VerificationResultExtensions
   /// <param name="func">The custom verification</param>
   /// <param name="result">Current verification-result instance</param>
   /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
-  public static VerificationResult ForEachBy(this VerificationResult result, Func<VerificationResult, VerificationResult> func)
+  public static VerificationResult ForEachBy<TItem>(this VerificationResult result, Func<VerificationResult, TItem, VerificationResult> func, string? itemName = null)
   {
     if (!IsEnumerable)
     {
@@ -58,9 +58,11 @@ public static partial class VerificationResultExtensions
 
     if (PropertyValue != null)
     {
-      foreach (var item in PropertyValue)
+      foreach (TItem item in PropertyValue)
       {
-        result = func.Invoke(result);
+        VerificationResult itemResult = LetsVerify.On(item, itemName);
+        itemResult.parentResult = result;
+        result = func.Invoke(itemResult, item).End();
       }
     }
 

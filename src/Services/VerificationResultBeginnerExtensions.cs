@@ -35,6 +35,33 @@ public static partial class VerificationResultExtensions
   }
 
   /// <summary>
+  /// THEN verify ON a new object.
+  /// **Note**: Use `End()` for finidhing this child veification.
+  /// </summary>
+  /// <typeparam name="TObject">Type of verifing object</typeparam>
+  /// <param name="result">A new child verification-result instance</param>
+  /// <param name="object">The vrifing object</param>
+  /// <param name="objectName">The name of verifing object</param>
+  /// <returns>An instance of `VerificationResult` as a child</returns>
+  public static VerificationResult ThenOn<TObject>(this VerificationResult result, TObject @object, string? objectName = null)
+    where TObject : class, IVerifiable<TObject>
+  {
+    VerificationResult vr = LetsVerify.On(@object, objectName);
+    vr.parentResult = result;
+    return vr;
+  }
+
+  /// <summary>
+  /// End of `THENON` that considered about a child and returns parent to continue verification on it.
+  /// </summary>
+  /// <param name="result">The parent or current verification-result</param>
+  /// <returns>An instance of parent or current verification-result</returns>
+  public static VerificationResult End(this VerificationResult result)
+  {
+    return result.parentResult ?? result;
+  }
+
+  /// <summary>
   /// Assign a property in the ignored-list.
   /// </summary>
   /// <param name="result">Current verification-result instance</param>
