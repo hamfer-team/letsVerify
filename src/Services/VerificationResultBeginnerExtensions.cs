@@ -26,7 +26,8 @@ public static partial class VerificationResultExtensions
 
     if (IsEnumerable)
     {
-      EnumerableCount = PropertyType.IsArray ? PropertyValue?.Length : (PropertyValue as IEnumerable<object>)?.Count();
+      EnumerableCount = PropertyType.IsArray ? (PropertyValue?.Length ?? 0) : ((PropertyValue as IEnumerable<object>)?.Count() ?? 0);
+      // Console.WriteLine($"🔆 [{name}] is IsEnumerable with {EnumerableCount} members!");
     }
 
     result.addLog($"+++. فیلدی با نام {name} جهت بررسی تعیین شد.");

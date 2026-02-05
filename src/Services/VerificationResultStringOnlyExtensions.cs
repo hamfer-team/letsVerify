@@ -127,16 +127,16 @@ public static partial class VerificationResultExtensions
   public static VerificationResult Csv(this VerificationResult result, out string[]? rows)
   {
     rows = null;
-    var isOk = false;
+    bool isOk = false;
 
-    var vresult = Handle(result, "تطبیق سی-اس-وی", () =>
+    VerificationResult vresult = Handle(result, "تطبیق سی-اس-وی", () =>
     {
       if (PropertyType != typeof(string) || string.IsNullOrEmpty(PropertyValue))
       {
         return;
       }
 
-      if (!Regex.IsMatch(PropertyValue, @"^\s*([^,]+)(,[^,\r\n]+)+\s*$"))
+      if (!Regex.IsMatch(PropertyValue, @"^\s*([^,]+)(,[^,\r\n]+)*\s*$"))
       {
         throw new LetsVerifyAssertStringError(result.objectName, $"متن {Name} منطبق بر قالب سی-اس-وی نمی‌باشد!");
       }
@@ -162,16 +162,16 @@ public static partial class VerificationResultExtensions
   public static VerificationResult CsvRow(this VerificationResult result, out string[]? columns)
   {
     columns = null;
-    var isOk = false;
+    bool isOk = false;
 
-    var vresult = Handle(result, "تطبیق سطر سی-اس-وی", () =>
+    VerificationResult vresult = Handle(result, "تطبیق سطر سی-اس-وی", () =>
     {
       if (PropertyType != typeof(string) || string.IsNullOrEmpty(PropertyValue))
       {
         return;
       }
 
-      if (!Regex.IsMatch(PropertyValue, @"^\s*([^,]+)(,[^,]+)+\s*$"))
+      if (!Regex.IsMatch(PropertyValue, @"^\s*([^,]+)(,[^,]+)*\s*$"))
       {
         throw new LetsVerifyAssertStringError(result.objectName, $"متن {Name} منطبق بر قالب سطر سی-اس-وی نمی‌باشد!");
       }
