@@ -186,4 +186,44 @@ public static partial class VerificationResultExtensions
 
     return vresult;
   }
+
+  /// <summary>
+  /// بررسی وجود داشتن مسیر یا پوشه
+  /// </summary>
+  /// <param name="result">Current verification-result instance</param>
+  /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
+  /// <exception cref="LetsVerifyAssertNotFoundError"></exception>
+  public static VerificationResult PathExists(this VerificationResult result)
+  => Handle(result, "وجود داشتن مسیر", () =>
+  {
+    if (PropertyType != typeof(string) || string.IsNullOrEmpty(PropertyValue))
+    {
+      return;
+    }
+
+    if (Path.Exists(PropertyValue))
+    {
+      throw new LetsVerifyAssertNotFoundError(result.objectName, PropertyValue, $"آدرس مورد نظر وجود ندارد!");
+    }
+  });
+
+  /// <summary>
+  /// بررسی وجود داشتن فایل
+  /// </summary>
+  /// <param name="result">Current verification-result instance</param>
+  /// <returns>An instance of `VerificationResult` that updated from current verification-result instance</returns>
+  /// <exception cref="LetsVerifyAssertNotFoundError"></exception>
+  public static VerificationResult FileExists(this VerificationResult result)
+  => Handle(result, "وجود داشتن فایل", () =>
+  {
+    if (PropertyType != typeof(string) || string.IsNullOrEmpty(PropertyValue))
+    {
+      return;
+    }
+
+    if (File.Exists(PropertyValue))
+    {
+      throw new LetsVerifyAssertNotFoundError(result.objectName, PropertyValue, $"آدرس مورد نظر وجود ندارد!");
+    }
+  });
 }
